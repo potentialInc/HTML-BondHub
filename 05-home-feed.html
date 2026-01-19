@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub - Home Feed</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+/* Hide scrollbar for sidebar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+display: none;
+}
+.no-scrollbar {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+</style></head>
+<body class="bg-gray-50 text-slate-900 selection:bg-[#14B8A6]/20 selection:text-[#0f766e]">
+
+    <div class="flex min-h-screen w-full">
+        
+        <!-- Desktop Sidebar (Fixed) -->
+        <aside class="hidden lg:flex flex-col w-[240px] fixed h-screen border-r border-gray-100 bg-white z-40">
+            <!-- Logo -->
+            <div class="h-16 flex items-center px-6">
+                <a href="./05-home-feed.html" class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-lg bg-[#14B8A6] flex items-center justify-center text-white">
+                        <span class="iconify" data-icon="lucide:hexagon" data-width="20" data-height="20" style="stroke-width: 2.5;"></span>
+                    </div>
+                    <span class="text-lg font-semibold tracking-tight text-slate-900">BondHub</span>
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a href="./05-home-feed.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-[#14B8A6]/10 text-[#0D9488] transition-colors">
+                    <span class="iconify" data-icon="lucide:home" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Home
+                </a>
+                <a href="./07-community-list.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:users" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Communities
+                </a>
+                <a href="./10-my-profile.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:user" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Profile
+                </a>
+                <a href="./14-settings.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:settings" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Settings
+                </a>
+            </nav>
+
+            <!-- User Mini Profile -->
+            <div class="p-4 border-t border-gray-100">
+                <a href="./10-my-profile.html" class="flex items-center gap-3 group">
+                    <img src="https://ui-avatars.com/api/?name=Alex+R&amp;background=f1f5f9&amp;color=64748b" alt="User" class="h-9 w-9 rounded-full ring-2 ring-white">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-slate-900 truncate group-hover:text-[#14B8A6] transition-colors">Alex Rivers</p>
+                        <p class="text-xs text-gray-500 truncate">@arivers</p>
+                    </div>
+                    <span class="iconify text-gray-400 group-hover:text-gray-600" data-icon="lucide:more-horizontal" data-width="16" data-height="16"></span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Feed Area -->
+        <main class="flex-1 lg:ml-[240px] w-full flex justify-center">
+            <div class="w-full max-w-[680px] px-4 py-6 lg:py-10 pb-24 lg:pb-10">
+                
+                <!-- Page Header -->
+                <header class="mb-8 flex items-center justify-between">
+                    <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Home</h1>
+                    <button class="lg:hidden p-2 text-gray-500 hover:text-slate-900">
+                        <span class="iconify" data-icon="lucide:bell" data-width="24" data-height="24" style="stroke-width: 1.5;"></span>
+                    </button>
+                    <!-- Desktop Action -->
+                    <button onclick="openCreatePostModal()" class="hidden lg:flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors shadow-sm">
+                        <span class="iconify" data-icon="lucide:plus" data-width="16" data-height="16" style="stroke-width: 2;"></span>
+                        New Post
+                    </button>
+                </header>
+
+                <!-- Feed List -->
+                <div class="flex flex-col gap-4">
+
+                    <!-- Post Card 1 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <a href="./13-other-user-profile.html">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Sarah" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100 hover:ring-[#14B8A6] transition-all">
+                                </a>
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <a href="./13-other-user-profile.html" class="text-sm font-medium text-slate-900 hover:text-[#14B8A6] transition-colors">Sarah Chen</a>
+                                        <a href="./08-community-detail.html" class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488] hover:bg-teal-100 transition-colors">Design Systems</a>
+                                    </div>
+                                    <span class="text-xs text-gray-500">2 hours ago</span>
+                                </div>
+                            </div>
+                            <!-- Dropdown Menu -->
+                            <div class="relative">
+                                <button onclick="toggleDropdown(this)" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                                </button>
+                                <div class="dropdown-menu hidden absolute right-0 top-full mt-1 w-[180px] bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                                    <button onclick="savePost(this); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:bookmark" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Save post
+                                    </button>
+                                    <button onclick="copyLink(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:link" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Copy link
+                                    </button>
+                                    <button onclick="openUnfollowModal('Sarah Chen'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:user-x" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Unfollow author
+                                    </button>
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    <button onclick="openReportModal(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                                        <span class="iconify" data-icon="lucide:flag" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Report post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="./06-post-detail.html" class="block mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">The evolution of component libraries in 2024</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                I've been researching how major tech companies are shifting their approach to internal design systems. The move towards headless components styled with utility classes seems to be the dominant trend. What is your team using?
+                            </p>
+                        </a>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <a href="./06-post-detail.html" class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                24 comments
+                            </a>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                86 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 2 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <a href="./13-other-user-profile.html">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Marcus" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100 hover:ring-[#14B8A6] transition-all">
+                                </a>
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <a href="./13-other-user-profile.html" class="text-sm font-medium text-slate-900 hover:text-[#14B8A6] transition-colors">Marcus Johnson</a>
+                                        <a href="./08-community-detail.html" class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488] hover:bg-teal-100 transition-colors">SF Startups</a>
+                                    </div>
+                                    <span class="text-xs text-gray-500">5 hours ago</span>
+                                </div>
+                            </div>
+                            <!-- Dropdown Menu -->
+                            <div class="relative">
+                                <button onclick="toggleDropdown(this)" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                                </button>
+                                <div class="dropdown-menu hidden absolute right-0 top-full mt-1 w-[180px] bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                                    <button onclick="savePost(this); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:bookmark" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Save post
+                                    </button>
+                                    <button onclick="copyLink(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:link" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Copy link
+                                    </button>
+                                    <button onclick="openUnfollowModal('Marcus Johnson'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:user-x" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Unfollow author
+                                    </button>
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    <button onclick="openReportModal(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                                        <span class="iconify" data-icon="lucide:flag" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Report post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="./06-post-detail.html" class="block mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">Weekly Founder Coffee @ Blue Bottle</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                Hey everyone! We're hosting our weekly casual meetup for early-stage founders this Thursday at 9 AM. Come grab a coffee, share what you're building, and get feedback on your latest MVP iterations. No pitch decks allowed, just vibes.
+                            </p>
+                        </a>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <a href="./06-post-detail.html" class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                12 comments
+                            </a>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                43 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 3 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <a href="./13-other-user-profile.html">
+                                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Elena" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100 hover:ring-[#14B8A6] transition-all">
+                                </a>
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <a href="./13-other-user-profile.html" class="text-sm font-medium text-slate-900 hover:text-[#14B8A6] transition-colors">Elena Rodriguez</a>
+                                        <a href="./08-community-detail.html" class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488] hover:bg-teal-100 transition-colors">Product Mgmt</a>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Yesterday</span>
+                                </div>
+                            </div>
+                            <!-- Dropdown Menu -->
+                            <div class="relative">
+                                <button onclick="toggleDropdown(this)" class="text-gray-400 hover:text-gray-600 p-1 rounded-lg hover:bg-gray-100 transition-colors">
+                                    <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                                </button>
+                                <div class="dropdown-menu hidden absolute right-0 top-full mt-1 w-[180px] bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50">
+                                    <button onclick="savePost(this); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:bookmark" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Save post
+                                    </button>
+                                    <button onclick="copyLink(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:link" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Copy link
+                                    </button>
+                                    <button onclick="openUnfollowModal('Elena Rodriguez'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-slate-700 hover:bg-gray-50 transition-colors text-left">
+                                        <span class="iconify text-gray-400" data-icon="lucide:user-x" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Unfollow author
+                                    </button>
+                                    <div class="h-px bg-gray-100 my-1"></div>
+                                    <button onclick="openReportModal(); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-red-600 hover:bg-red-50 transition-colors text-left">
+                                        <span class="iconify" data-icon="lucide:flag" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                        Report post
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="./06-post-detail.html" class="block mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">Roadmap prioritization frameworks?</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                Struggling to balance technical debt with new feature requests this quarter. We've tried RICE scores but they feel too subjective for our current stage. Has anyone successfully implemented the Kano model for B2B SaaS?
+                            </p>
+                        </a>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <a href="./06-post-detail.html" class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                38 comments
+                            </a>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                15 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="lg:hidden fixed bottom-0 left-0 w-full h-[60px] bg-white border-t border-gray-100 flex justify-around items-center z-50 px-2">
+        <a href="./05-home-feed.html" class="flex flex-col items-center justify-center w-full h-full text-[#14B8A6]">
+            <span class="iconify mb-0.5" data-icon="lucide:home" data-width="22" data-height="22" style="stroke-width: 2;"></span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <button onclick="openCreatePostModal()" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:plus-square" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Post</span>
+        </button>
+        <a href="./10-my-profile.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:user" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+        <a href="./14-settings.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:settings" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Settings</span>
+        </a>
+    </nav>
+
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[200] flex flex-col gap-2"></div>
+
+    <!-- Report Post Modal -->
+    <div id="reportModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeReportModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[420px] bg-white rounded-xl shadow-2xl border border-gray-200/60">
+                <!-- Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h2 class="text-lg font-semibold tracking-tight text-slate-900">Report Post</h2>
+                    <button onclick="closeReportModal()" class="text-gray-400 hover:text-slate-900 hover:bg-gray-100 rounded-full p-2 transition-all -mr-2">
+                        <span class="iconify" data-icon="lucide:x" data-width="20" data-height="20"></span>
+                    </button>
+                </div>
+                <!-- Body -->
+                <div class="p-6">
+                    <p class="text-sm text-gray-600 mb-4">Why are you reporting this post?</p>
+                    <div class="space-y-2">
+                        <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#14B8A6] hover:bg-[#14B8A6]/5 cursor-pointer transition-all">
+                            <input type="radio" name="report-reason" value="spam" class="w-4 h-4 text-[#14B8A6] border-gray-300 focus:ring-[#14B8A6]">
+                            <span class="text-sm text-slate-700">Spam or misleading</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#14B8A6] hover:bg-[#14B8A6]/5 cursor-pointer transition-all">
+                            <input type="radio" name="report-reason" value="harassment" class="w-4 h-4 text-[#14B8A6] border-gray-300 focus:ring-[#14B8A6]">
+                            <span class="text-sm text-slate-700">Harassment or bullying</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#14B8A6] hover:bg-[#14B8A6]/5 cursor-pointer transition-all">
+                            <input type="radio" name="report-reason" value="inappropriate" class="w-4 h-4 text-[#14B8A6] border-gray-300 focus:ring-[#14B8A6]">
+                            <span class="text-sm text-slate-700">Inappropriate content</span>
+                        </label>
+                        <label class="flex items-center gap-3 p-3 rounded-lg border border-gray-200 hover:border-[#14B8A6] hover:bg-[#14B8A6]/5 cursor-pointer transition-all">
+                            <input type="radio" name="report-reason" value="other" class="w-4 h-4 text-[#14B8A6] border-gray-300 focus:ring-[#14B8A6]">
+                            <span class="text-sm text-slate-700">Other</span>
+                        </label>
+                    </div>
+                    <div class="mt-4">
+                        <textarea placeholder="Additional details (optional)" class="w-full min-h-[80px] p-3 rounded-lg border border-gray-200 text-sm text-slate-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20 focus:border-[#14B8A6] transition-all resize-none"></textarea>
+                    </div>
+                </div>
+                <!-- Footer -->
+                <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50 rounded-b-xl">
+                    <button onclick="closeReportModal()" class="h-[40px] px-5 bg-white border border-gray-200 text-slate-600 hover:text-slate-900 hover:bg-gray-50 rounded-lg font-medium text-sm transition-all">
+                        Cancel
+                    </button>
+                    <button onclick="submitReport()" class="h-[40px] px-5 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm transition-all">
+                        Submit Report
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Unfollow Confirmation Modal -->
+    <div id="unfollowModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeUnfollowModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[380px] bg-white rounded-xl shadow-2xl border border-gray-200/60">
+                <div class="p-6 text-center">
+                    <div class="mx-auto w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                        <span class="iconify text-gray-500" data-icon="lucide:user-x" data-width="24" data-height="24"></span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Unfollow <span id="unfollowUserName">this user</span>?</h3>
+                    <p class="text-sm text-gray-600 mb-6">You will no longer see their posts in your home feed.</p>
+                    <div class="flex gap-3">
+                        <button onclick="closeUnfollowModal()" class="flex-1 h-[44px] px-4 bg-white border border-gray-200 text-slate-700 hover:bg-gray-50 rounded-lg font-medium text-sm transition-all">
+                            Cancel
+                        </button>
+                        <button onclick="confirmUnfollow()" class="flex-1 h-[44px] px-4 bg-slate-900 hover:bg-slate-800 text-white rounded-lg font-medium text-sm transition-all">
+                            Unfollow
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal (Post Created) -->
+    <div id="successModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeSuccessModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[380px] bg-white rounded-xl shadow-2xl border border-gray-200/60">
+                <div class="p-6 text-center">
+                    <div class="mx-auto w-14 h-14 rounded-full bg-[#14B8A6]/10 flex items-center justify-center mb-4">
+                        <span class="iconify text-[#14B8A6]" data-icon="lucide:check-circle" data-width="32" data-height="32"></span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Post Published!</h3>
+                    <p class="text-sm text-gray-600 mb-6">Your post has been successfully shared with the community.</p>
+                    <div class="flex gap-3">
+                        <button onclick="closeSuccessModal()" class="flex-1 h-[44px] px-4 bg-white border border-gray-200 text-slate-700 hover:bg-gray-50 rounded-lg font-medium text-sm transition-all">
+                            Close
+                        </button>
+                        <a href="./06-post-detail.html" class="flex-1 h-[44px] px-4 bg-[#14B8A6] hover:bg-[#0D9488] text-white rounded-lg font-medium text-sm transition-all flex items-center justify-center">
+                            View Post
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div id="createPostModal" class="fixed inset-0 z-[100] hidden">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeCreatePostModal()"></div>
+
+        <!-- Modal Container -->
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[560px] bg-white rounded-xl shadow-2xl border border-gray-200/60 transform transition-all max-h-[90vh] overflow-hidden flex flex-col">
+
+                <!-- Modal Header -->
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h2 class="text-xl font-semibold tracking-tight text-slate-900">Create Post</h2>
+                    <button onclick="closeCreatePostModal()" class="text-gray-400 hover:text-slate-900 hover:bg-gray-100 rounded-full p-2 transition-all -mr-2">
+                        <span class="iconify" data-icon="lucide:x" data-width="20" data-height="20"></span>
+                    </button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="flex-1 overflow-y-auto p-6">
+                    <!-- Community Selector -->
+                    <div class="mb-5">
+                        <label class="block text-sm font-medium text-slate-700 mb-1.5">Post to</label>
+                        <button class="w-full h-[44px] px-4 rounded-lg border border-gray-200 bg-white text-left flex items-center justify-between hover:border-gray-300 transition-colors">
+                            <div class="flex items-center gap-2">
+                                <span class="iconify text-[#14B8A6]" data-icon="lucide:layout-template" data-width="16" data-height="16"></span>
+                                <span class="text-sm font-medium text-slate-900">Design Systems</span>
+                            </div>
+                            <span class="iconify text-gray-400" data-icon="lucide:chevron-down" data-width="16" data-height="16"></span>
+                        </button>
+                    </div>
+
+                    <!-- Title Input -->
+                    <div class="mb-5">
+                        <label for="post-title" class="block text-sm font-medium text-slate-700 mb-1.5">
+                            Title <span class="text-[#14B8A6]">*</span>
+                        </label>
+                        <input type="text" id="post-title" placeholder="Give your post a title" class="w-full h-[48px] px-4 rounded-lg border border-gray-200 bg-white text-slate-900 text-sm placeholder:text-gray-400 focus:outline-none focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition-all">
+                        <div class="flex justify-end mt-1.5">
+                            <span class="text-xs text-gray-400 font-medium">0/100</span>
+                        </div>
+                    </div>
+
+                    <!-- Content Input -->
+                    <div class="mb-4">
+                        <label for="post-content" class="block text-sm font-medium text-slate-700 mb-1.5">
+                            Content <span class="text-[#14B8A6]">*</span>
+                        </label>
+
+                        <!-- Rich Text Editor Container -->
+                        <div class="border border-gray-200 rounded-lg overflow-hidden focus-within:border-[#14B8A6] focus-within:ring-1 focus-within:ring-[#14B8A6] transition-all bg-white">
+                            <!-- Toolbar -->
+                            <div class="flex items-center gap-1 px-2 py-2 border-b border-gray-100 bg-gray-50/50">
+                                <button type="button" class="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-gray-100 rounded transition-colors" title="Bold">
+                                    <span class="iconify" data-icon="lucide:bold" data-width="16" data-height="16"></span>
+                                </button>
+                                <button type="button" class="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-gray-100 rounded transition-colors" title="Italic">
+                                    <span class="iconify" data-icon="lucide:italic" data-width="16" data-height="16"></span>
+                                </button>
+                                <div class="w-px h-4 bg-gray-200 mx-1"></div>
+                                <button type="button" class="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-gray-100 rounded transition-colors" title="Link">
+                                    <span class="iconify" data-icon="lucide:link" data-width="16" data-height="16"></span>
+                                </button>
+                                <button type="button" class="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-gray-100 rounded transition-colors" title="Image">
+                                    <span class="iconify" data-icon="lucide:image" data-width="16" data-height="16"></span>
+                                </button>
+                                <button type="button" class="p-1.5 text-gray-500 hover:text-slate-900 hover:bg-gray-100 rounded transition-colors" title="List">
+                                    <span class="iconify" data-icon="lucide:list" data-width="16" data-height="16"></span>
+                                </button>
+                            </div>
+
+                            <!-- Textarea -->
+                            <textarea id="post-content" placeholder="Share your thoughts..." class="w-full min-h-[160px] p-4 text-sm text-slate-900 placeholder:text-gray-400 border-none resize-none focus:ring-0 focus:outline-none bg-transparent"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50">
+                    <button onclick="closeCreatePostModal()" class="h-[44px] px-6 bg-white border border-gray-200 text-slate-600 hover:text-slate-900 hover:bg-gray-50 hover:border-gray-300 rounded-lg font-medium text-sm transition-all">
+                        Cancel
+                    </button>
+                    <button onclick="publishPost()" class="h-[44px] px-6 bg-[#14B8A6] hover:bg-[#0D9488] text-white rounded-lg font-semibold text-sm transition-all shadow-sm hover:shadow-md flex items-center gap-2">
+                        <span class="iconify" data-icon="lucide:send" data-width="16" data-height="16"></span>
+                        Post
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Toast Notification System
+        function showToast(message, type = 'success', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+
+            const bgColor = type === 'success' ? 'bg-[#14B8A6]' : type === 'error' ? 'bg-red-500' : 'bg-slate-800';
+            const icon = type === 'success' ? 'lucide:check' : type === 'error' ? 'lucide:x' : 'lucide:info';
+
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform translate-x-full transition-transform duration-300 min-w-[280px]`;
+            toast.innerHTML = `
+                <span class="iconify" data-icon="${icon}" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-x-full');
+                toast.classList.add('translate-x-0');
+            }, 10);
+
+            // Remove after duration
+            setTimeout(() => {
+                toast.classList.remove('translate-x-0');
+                toast.classList.add('translate-x-full');
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+
+        // Save Post Function
+        function savePost(button) {
+            showToast('Post saved to your bookmarks', 'success');
+        }
+
+        // Copy Link Function
+        function copyLink() {
+            navigator.clipboard.writeText(window.location.href + '#post-123');
+            showToast('Link copied to clipboard', 'success');
+        }
+
+        // Report Modal Functions
+        function openReportModal() {
+            document.getElementById('reportModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReportModal() {
+            document.getElementById('reportModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function submitReport() {
+            closeReportModal();
+            showToast('Report submitted. We\'ll review it shortly.', 'success');
+        }
+
+        // Unfollow Modal Functions
+        function openUnfollowModal(userName) {
+            document.getElementById('unfollowUserName').textContent = userName;
+            document.getElementById('unfollowModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeUnfollowModal() {
+            document.getElementById('unfollowModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function confirmUnfollow() {
+            const userName = document.getElementById('unfollowUserName').textContent;
+            closeUnfollowModal();
+            showToast(`You unfollowed ${userName}`, 'success');
+        }
+
+        // Success Modal Functions
+        function openSuccessModal() {
+            document.getElementById('successModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Publish Post Function
+        function publishPost() {
+            closeCreatePostModal();
+            openSuccessModal();
+        }
+        function openCreatePostModal() {
+            document.getElementById('createPostModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeCreatePostModal() {
+            document.getElementById('createPostModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCreatePostModal();
+                closeAllDropdowns();
+            }
+        });
+
+        // Dropdown toggle function
+        function toggleDropdown(button) {
+            event.stopPropagation();
+            const dropdown = button.nextElementSibling;
+            const isHidden = dropdown.classList.contains('hidden');
+
+            // Close all other dropdowns first
+            closeAllDropdowns();
+
+            // Toggle this dropdown
+            if (isHidden) {
+                dropdown.classList.remove('hidden');
+            }
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.classList.add('hidden');
+            });
+        }
+
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown-menu') && !e.target.closest('button[onclick*="toggleDropdown"]')) {
+                closeAllDropdowns();
+            }
+        });
+
+        // Close all modals on Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeReportModal();
+                closeUnfollowModal();
+                closeSuccessModal();
+            }
+        });
+    </script>
+
+</body></html>

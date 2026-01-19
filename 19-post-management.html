@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub - Post Management</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+.no-scrollbar::-webkit-scrollbar {
+display: none;
+}
+.no-scrollbar {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+/* Custom Checkbox */
+.custom-checkbox {
+appearance: none;
+background-color: #fff;
+margin: 0;
+font: inherit;
+color: currentColor;
+width: 1.15em;
+height: 1.15em;
+border: 1px solid #d1d5db;
+border-radius: 0.25em;
+display: grid;
+place-content: center;
+cursor: pointer;
+transition: all 0.2s ease-in-out;
+}
+.custom-checkbox::before {
+content: "";
+width: 0.65em;
+height: 0.65em;
+transform: scale(0);
+transition: 120ms transform ease-in-out;
+box-shadow: inset 1em 1em white;
+transform-origin: center;
+clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+.custom-checkbox:checked {
+background-color: #14B8A6;
+border-color: #14B8A6;
+}
+.custom-checkbox:checked::before {
+transform: scale(1);
+}
+</style></head>
+<body class="bg-gray-50 flex h-screen overflow-hidden text-gray-900">
+
+    <!-- Sidebar -->
+    <aside class="w-[240px] bg-gray-900 text-white flex flex-col flex-shrink-0 z-20 transition-all duration-300">
+        <!-- Logo -->
+        <div class="h-16 flex items-center px-6 border-b border-gray-800">
+            <span class="iconify text-[#14B8A6] mr-2.5" data-icon="lucide:shield-check" data-width="20" data-height="20"></span>
+            <span class="text-base font-semibold tracking-tight text-white">BondHub Admin</span>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 py-6 space-y-1 overflow-y-auto no-scrollbar">
+
+            <!-- Dashboard -->
+            <a href="./16-admin-dashboard.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:layout-dashboard" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Dashboard</span>
+            </a>
+
+            <!-- Users -->
+            <a href="./17-user-management.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:users" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Users</span>
+            </a>
+
+            <!-- Communities -->
+            <a href="./18-community-management.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:users-round" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Communities</span>
+            </a>
+
+            <!-- Posts (Active) -->
+            <a href="./19-post-management.html" class="group flex items-center h-10 px-5 bg-gray-800 border-l-[3px] border-[#14B8A6] text-[#14B8A6] transition-all">
+                <span class="iconify mr-3" data-icon="lucide:file-text" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Posts</span>
+            </a>
+
+            <!-- Comments -->
+            <a href="./20-comment-management.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:message-square" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Comments</span>
+            </a>
+
+            <!-- Divider -->
+            <div class="pt-4 pb-2">
+                <p class="px-6 text-xs font-semibold text-gray-600 uppercase tracking-wider">System</p>
+            </div>
+
+            <!-- Analytics -->
+            <a href="./21-data-export.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:bar-chart-2" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Analytics</span>
+            </a>
+
+            <!-- Settings -->
+            <a href="./22-admin-settings.html" class="group flex items-center h-10 px-5 border-l-[3px] border-transparent text-gray-400 hover:text-white hover:bg-gray-800 transition-all">
+                <span class="iconify mr-3 group-hover:text-white transition-colors" data-icon="lucide:settings" data-width="18" data-height="18"></span>
+                <span class="text-sm font-medium">Settings</span>
+            </a>
+
+        </nav>
+
+        <!-- User Profile -->
+        <div class="p-4 border-t border-gray-800">
+            <div class="flex items-center gap-3">
+                <img src="https://ui-avatars.com/api/?name=Admin+User&amp;background=14B8A6&amp;color=fff" alt="Admin" class="w-8 h-8 rounded-full">
+                <div class="flex flex-col">
+                    <span class="text-xs font-medium text-white">Admin User</span>
+                    <span class="text-xs text-gray-500">admin@bondhub.com</span>
+                </div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        
+        <!-- Header -->
+        <header class="h-auto min-h-[80px] py-6 px-8 bg-gray-50 flex-shrink-0 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="flex flex-col gap-1">
+                <h1 class="text-[32px] leading-tight font-semibold text-gray-900 tracking-tight">Post Management</h1>
+                <p class="text-sm text-gray-500">Review user content, moderate flagged posts, and manage visibility.</p>
+            </div>
+        </header>
+
+        <!-- Toolbar -->
+        <div class="px-8 pb-6 flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
+            <!-- Search & Filters -->
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full xl:w-auto">
+                <!-- Search -->
+                <div class="relative group w-full sm:w-auto">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <span class="iconify text-gray-400 group-focus-within:text-[#14B8A6] transition-colors" data-icon="lucide:search" data-width="16" data-height="16"></span>
+                    </div>
+                    <input type="text" placeholder="Search by title, author..." class="block w-full sm:w-72 pl-10 pr-3 py-2 border border-gray-200 rounded-lg text-sm bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20 focus:border-[#14B8A6] transition-all shadow-sm">
+                </div>
+
+                <!-- Community Filter -->
+                <div class="relative w-full sm:w-auto">
+                    <button class="flex w-full sm:w-auto items-center justify-between gap-2 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 px-3 py-2 rounded-lg text-sm font-medium shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20">
+                        <div class="flex items-center gap-2">
+                            <span class="iconify text-gray-500" data-icon="lucide:users-round" data-width="16" data-height="16"></span>
+                            <span>All Communities</span>
+                        </div>
+                        <span class="iconify text-gray-400 ml-1" data-icon="lucide:chevron-down" data-width="14" data-height="14"></span>
+                    </button>
+                </div>
+
+                <!-- Flagged Filter -->
+                <div class="relative w-full sm:w-auto">
+                    <button class="flex w-full sm:w-auto items-center justify-between gap-2 bg-white border border-gray-200 hover:border-gray-300 text-gray-700 px-3 py-2 rounded-lg text-sm font-medium shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20">
+                        <div class="flex items-center gap-2">
+                            <span class="iconify text-gray-500" data-icon="lucide:flag" data-width="16" data-height="16"></span>
+                            <span>Flagged: All</span>
+                        </div>
+                        <span class="iconify text-gray-400 ml-1" data-icon="lucide:chevron-down" data-width="14" data-height="14"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Date Range -->
+            <button class="flex w-full xl:w-auto items-center justify-between xl:justify-start gap-2 bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 px-3 py-2 rounded-lg text-sm font-medium shadow-sm transition-all focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20">
+                <div class="flex items-center gap-2">
+                    <span class="iconify text-gray-500" data-icon="lucide:calendar" data-width="16" data-height="16"></span>
+                    <span>Oct 1, 2023 - Oct 31, 2023</span>
+                </div>
+                <span class="iconify text-gray-400 ml-1" data-icon="lucide:chevron-down" data-width="14" data-height="14"></span>
+            </button>
+        </div>
+
+        <!-- Content Scroll Area -->
+        <div class="flex-1 overflow-y-auto px-8 pb-8">
+            
+            <!-- Table Card -->
+            <div class="bg-white border border-gray-200/75 rounded-xl shadow-sm flex flex-col h-full max-h-[calc(100vh-220px)]">
+                
+                <!-- Table Container -->
+                <div class="overflow-auto flex-1">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-gray-50 sticky top-0 z-10">
+                            <tr class="border-b border-gray-100">
+                                <th class="px-6 py-4 w-12">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Post Title</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Author</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Community</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-center">Comments</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Flagged</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">Created At</th>
+                                <th class="px-6 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider text-right">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-50">
+                            
+                            <!-- Row 1: Normal -->
+                            <tr class="hover:bg-gray-50/50 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col max-w-[280px]">
+                                        <span class="text-sm font-semibold text-gray-900 truncate">Best practices for React 18 Suspense</span>
+                                        <span class="text-xs text-gray-500 truncate">Looking for guidance on implementing Suspense in...</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://ui-avatars.com/api/?name=Sarah+Chen&amp;background=random" class="w-8 h-8 rounded-full" alt="Sarah Chen">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-gray-900">Sarah Chen</span>
+                                            <span class="text-xs text-gray-500">@schen_dev</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
+                                        Tech Enthusiasts
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="text-sm text-gray-600 font-medium">24</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-gray-300 text-sm">-</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Oct 24, 2023
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-1.5 text-gray-400 hover:text-[#14B8A6] hover:bg-teal-50 rounded-md transition-colors" title="View">
+                                            <span class="iconify" data-icon="lucide:eye" data-width="16" data-height="16"></span>
+                                        </button>
+                                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors" title="Delete">
+                                            <span class="iconify" data-icon="lucide:trash-2" data-width="16" data-height="16"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2: Flagged -->
+                            <tr class="bg-amber-50/30 hover:bg-amber-50/60 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col max-w-[280px]">
+                                        <span class="text-sm font-semibold text-gray-900 truncate">Make $5000/day minimal effort!!</span>
+                                        <span class="text-xs text-gray-500 truncate">Click this link to see how I retired at 22...</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://ui-avatars.com/api/?name=Crypto+King&amp;background=333&amp;color=fff" class="w-8 h-8 rounded-full" alt="Crypto King">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-gray-900">Crypto King</span>
+                                            <span class="text-xs text-gray-500">@cryptok1ng</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-50 text-orange-700 border border-orange-100">
+                                        Startup Founders
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="text-sm text-gray-600 font-medium">2</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
+                                        <span class="iconify" data-icon="lucide:alert-triangle" data-width="12" data-height="12"></span>
+                                        Spam
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Oct 23, 2023
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <div class="flex items-center justify-end gap-1 opacity-100 transition-opacity">
+                                        <button class="p-1.5 text-gray-400 hover:text-[#14B8A6] hover:bg-teal-50 rounded-md transition-colors" title="View">
+                                            <span class="iconify" data-icon="lucide:eye" data-width="16" data-height="16"></span>
+                                        </button>
+                                        <button class="p-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors" title="Delete">
+                                            <span class="iconify" data-icon="lucide:trash-2" data-width="16" data-height="16"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3: Normal -->
+                            <tr class="hover:bg-gray-50/50 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col max-w-[280px]">
+                                        <span class="text-sm font-semibold text-gray-900 truncate">Critique my landscape portfolio</span>
+                                        <span class="text-xs text-gray-500 truncate">Spent a week in Iceland, here are the results.</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://ui-avatars.com/api/?name=Mike+Ross&amp;background=random" class="w-8 h-8 rounded-full" alt="Mike Ross">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-gray-900">Mike Ross</span>
+                                            <span class="text-xs text-gray-500">@mross_photo</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-teal-50 text-teal-700 border border-teal-100">
+                                        Photography 101
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="text-sm text-gray-600 font-medium">86</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-gray-300 text-sm">-</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Oct 22, 2023
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-1.5 text-gray-400 hover:text-[#14B8A6] hover:bg-teal-50 rounded-md transition-colors" title="View">
+                                            <span class="iconify" data-icon="lucide:eye" data-width="16" data-height="16"></span>
+                                        </button>
+                                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors" title="Delete">
+                                            <span class="iconify" data-icon="lucide:trash-2" data-width="16" data-height="16"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 4: Flagged -->
+                            <tr class="bg-amber-50/30 hover:bg-amber-50/60 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col max-w-[280px]">
+                                        <span class="text-sm font-semibold text-gray-900 truncate">Inappropriate behavior in comments</span>
+                                        <span class="text-xs text-gray-500 truncate">This user keeps harassing me on every post...</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://ui-avatars.com/api/?name=Jenny+Kim&amp;background=random" class="w-8 h-8 rounded-full" alt="Jenny Kim">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-gray-900">Jenny Kim</span>
+                                            <span class="text-xs text-gray-500">@jennny_k</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-pink-50 text-pink-700 border border-pink-100">
+                                        Creative Design
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="text-sm text-gray-600 font-medium">15</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium bg-amber-100 text-amber-700 border border-amber-200">
+                                        <span class="iconify" data-icon="lucide:flag" data-width="12" data-height="12"></span>
+                                        Harassment
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Oct 21, 2023
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <div class="flex items-center justify-end gap-1 opacity-100 transition-opacity">
+                                        <button class="p-1.5 text-gray-400 hover:text-[#14B8A6] hover:bg-teal-50 rounded-md transition-colors" title="View">
+                                            <span class="iconify" data-icon="lucide:eye" data-width="16" data-height="16"></span>
+                                        </button>
+                                        <button class="p-1.5 text-red-600 bg-red-50 hover:bg-red-100 rounded-md transition-colors" title="Delete">
+                                            <span class="iconify" data-icon="lucide:trash-2" data-width="16" data-height="16"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 5: Normal -->
+                            <tr class="hover:bg-gray-50/50 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <input type="checkbox" class="custom-checkbox">
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex flex-col max-w-[280px]">
+                                        <span class="text-sm font-semibold text-gray-900 truncate">Vercel vs Netlify in 2023</span>
+                                        <span class="text-xs text-gray-500 truncate">A comprehensive comparison of features and...</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <div class="flex items-center gap-3">
+                                        <img src="https://ui-avatars.com/api/?name=David+Lee&amp;background=random" class="w-8 h-8 rounded-full" alt="David Lee">
+                                        <div class="flex flex-col">
+                                            <span class="text-sm font-medium text-gray-900">David Lee</span>
+                                            <span class="text-xs text-gray-500">@dlee_codes</span>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-100">
+                                        Tech Enthusiasts
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-center">
+                                    <span class="text-sm text-gray-600 font-medium">112</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <span class="text-gray-300 text-sm">-</span>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                    Oct 20, 2023
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right">
+                                    <div class="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button class="p-1.5 text-gray-400 hover:text-[#14B8A6] hover:bg-teal-50 rounded-md transition-colors" title="View">
+                                            <span class="iconify" data-icon="lucide:eye" data-width="16" data-height="16"></span>
+                                        </button>
+                                        <button class="p-1.5 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-md transition-colors" title="Delete">
+                                            <span class="iconify" data-icon="lucide:trash-2" data-width="16" data-height="16"></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="px-6 py-4 border-t border-gray-100 flex items-center justify-between bg-white rounded-b-xl">
+                    <div class="text-xs text-gray-500 font-medium">
+                        Showing <span class="text-gray-900">1-10</span> of <span class="text-gray-900">3,421</span> posts
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <button class="p-2 border border-gray-200 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-50 disabled:opacity-50 transition-all">
+                            <span class="iconify" data-icon="lucide:chevron-left" data-width="16" data-height="16"></span>
+                        </button>
+                        
+                        <div class="flex items-center gap-1">
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg bg-[#14B8A6] text-white text-xs font-medium shadow-sm shadow-[#14B8A6]/20">1</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-50 text-gray-600 text-xs font-medium transition-colors">2</button>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-50 text-gray-600 text-xs font-medium transition-colors">3</button>
+                            <span class="text-gray-400 text-xs px-1">...</span>
+                            <button class="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-gray-50 text-gray-600 text-xs font-medium transition-colors">342</button>
+                        </div>
+
+                        <button class="p-2 border border-gray-200 rounded-lg text-gray-600 hover:bg-gray-50 transition-all">
+                            <span class="iconify" data-icon="lucide:chevron-right" data-width="16" data-height="16"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+
+</body></html>

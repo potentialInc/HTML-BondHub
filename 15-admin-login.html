@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login - BondHub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+/* Custom checkbox/toggle styles if needed later */
+.input-focus-ring:focus-within {
+box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+border-color: #14B8A6;
+}
+</style></head>
+<body class="bg-gray-900 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Login Card -->
+    <main class="w-full max-w-[400px] bg-white rounded-xl shadow-xl p-8 relative overflow-hidden">
+        
+        <!-- Top Decor Line -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#14B8A6] to-[#0D9488]"></div>
+
+        <div class="flex flex-col items-center text-center space-y-6">
+            
+            <!-- Admin Badge -->
+            <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gray-100 border border-gray-200">
+                <span class="iconify text-gray-600" data-icon="lucide:shield-check" data-width="14" data-height="14" data-stroke-width="1.5"></span>
+                <span class="text-xs font-medium text-gray-600 tracking-wide uppercase">BondHub Admin</span>
+            </div>
+
+            <!-- Headers -->
+            <div class="space-y-2">
+                <h2 class="text-2xl font-semibold text-gray-900 tracking-tight">Admin Login</h2>
+                <p class="text-sm text-gray-500">Access the admin dashboard</p>
+            </div>
+
+            <!-- Login Form -->
+            <form class="w-full space-y-4 text-left" onsubmit="event.preventDefault();">
+                
+                <!-- Email Input -->
+                <div class="space-y-1.5">
+                    <label for="email" class="text-xs font-medium text-gray-700 ml-1">Email Address</label>
+                    <div class="relative group">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#14B8A6] transition-colors">
+                            <span class="iconify" data-icon="lucide:mail" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                        </span>
+                        <input type="email" id="email" class="w-full h-12 pl-10 pr-4 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition-all" placeholder="admin@bondhub.com" required="">
+                    </div>
+                </div>
+
+                <!-- Password Input -->
+                <div class="space-y-1.5">
+                    <div class="flex items-center justify-between ml-1">
+                        <label for="password" class="text-xs font-medium text-gray-700">Password</label>
+                        <a href="#" class="text-xs font-medium text-[#14B8A6] hover:text-[#0D9488] transition-colors">Forgot password?</a>
+                    </div>
+                    <div class="relative group">
+                        <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#14B8A6] transition-colors">
+                            <span class="iconify" data-icon="lucide:lock" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                        </span>
+                        <input type="password" id="password" class="w-full h-12 pl-10 pr-12 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-900 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-[#14B8A6] focus:ring-1 focus:ring-[#14B8A6] transition-all" placeholder="••••••••" required="">
+                        <button type="button" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 transition-colors focus:outline-none">
+                            <span class="iconify" data-icon="lucide:eye" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Sign In Button -->
+                <button type="submit" class="w-full h-12 mt-6 bg-[#14B8A6] hover:bg-[#0D9488] text-white text-sm font-medium rounded-lg shadow-sm shadow-teal-500/20 transition-all active:scale-[0.98] flex items-center justify-center gap-2">
+                    Sign In
+                    <span class="iconify" data-icon="lucide:arrow-right" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                </button>
+
+            </form>
+        </div>
+
+        <!-- Footer -->
+        <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+            <p class="text-xs text-gray-400">
+                Protected by BondHub Security. <br>
+                <span class="mt-1 inline-block">Unauthorized access is prohibited.</span>
+            </p>
+        </div>
+
+    </main>
+
+    <!-- Admin Login Handler Script -->
+    <script>
+        (function() {
+            const form = document.querySelector('form');
+            if (!form) return;
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('email');
+                const password = document.getElementById('password');
+                if (email && password) {
+                    if (email.value === 'admin@bondhub.com' && password.value === 'admin1234') {
+                        location.href = './16-admin-dashboard.html';
+                    } else {
+                        alert('Admin demo: admin@bondhub.com / admin1234');
+                    }
+                }
+            });
+        })();
+    </script>
+
+</body></html>

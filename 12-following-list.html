@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub - Following</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+</style></head>
+<body class="bg-gray-50 text-slate-900 min-h-screen">
+
+    <!-- Main Container -->
+    <main class="max-w-[480px] mx-auto w-full min-h-screen flex flex-col p-4 sm:p-6">
+        
+        <!-- Header -->
+        <header class="flex items-center justify-between mb-6">
+            <div class="flex items-baseline gap-2.5">
+                <h2 class="text-[24px] font-semibold tracking-tight text-slate-900">Following</h2>
+                <span class="text-sm font-medium text-gray-500">128</span>
+            </div>
+            <button class="group flex items-center justify-center h-8 w-8 rounded-full hover:bg-gray-200/60 transition-colors">
+                <span class="iconify text-gray-500 group-hover:text-slate-700" data-icon="lucide:x" data-width="20" data-height="20"></span>
+            </button>
+        </header>
+
+        <!-- Search Input -->
+        <div class="relative mb-6 group">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-[#14B8A6] transition-colors">
+                <span class="iconify" data-icon="lucide:search" data-width="18" data-height="18"></span>
+            </div>
+            <input type="text" placeholder="Search followers..." class="block w-full h-[44px] pl-10 pr-4 rounded-xl border border-transparent bg-white shadow-sm text-sm text-slate-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20 focus:border-[#14B8A6] transition-all">
+        </div>
+
+        <!-- User List Container -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            
+            <!-- User 1: Following (Active) -->
+            <div class="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50/50 transition-colors group">
+                <!-- Avatar -->
+                <a href="./13-other-user-profile.html" class="shrink-0 relative">
+                    <img src="https://ui-avatars.com/api/?name=Sarah+Chen&amp;background=f0fdfa&amp;color=0f766e&amp;size=100" alt="Sarah Chen" class="h-12 w-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-200 transition-all">
+                </a>
+
+                <!-- Info -->
+                <div class="flex-1 min-w-0 flex flex-col justify-center">
+                    <a href="./13-other-user-profile.html" class="text-[16px] font-medium text-slate-900 truncate hover:text-[#0D9488] transition-colors">Sarah Chen</a>
+                    <span class="text-[14px] text-gray-500 truncate">@sarahchen_design</span>
+                </div>
+
+                <!-- Action Button: Following (Primary Filled) -->
+                <button class="shrink-0 h-[36px] px-4 rounded-lg bg-[#14B8A6] hover:bg-[#0D9488] text-white text-sm font-medium transition-all shadow-sm flex items-center gap-1.5 focus:ring-2 focus:ring-offset-1 focus:ring-[#14B8A6]">
+                    Following
+                </button>
+            </div>
+
+            <!-- User 2: Follow (Outline) -->
+            <div class="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50/50 transition-colors group">
+                <a href="./13-other-user-profile.html" class="shrink-0 relative">
+                    <img src="https://ui-avatars.com/api/?name=Marcus+Thorne&amp;background=f1f5f9&amp;color=334155&amp;size=100" alt="Marcus Thorne" class="h-12 w-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-200 transition-all">
+                </a>
+
+                <div class="flex-1 min-w-0 flex flex-col justify-center">
+                    <a href="./13-other-user-profile.html" class="text-[16px] font-medium text-slate-900 truncate hover:text-[#0D9488] transition-colors">Marcus Thorne</a>
+                    <span class="text-[14px] text-gray-500 truncate">@marcus_t</span>
+                </div>
+
+                <!-- Action Button: Follow (Secondary Outline) -->
+                <button class="shrink-0 h-[36px] px-4 rounded-lg bg-transparent border border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/5 text-sm font-medium transition-all flex items-center gap-1.5 focus:ring-2 focus:ring-offset-1 focus:ring-[#14B8A6]">
+                    Follow
+                </button>
+            </div>
+
+            <!-- User 3: Following (Active) -->
+            <div class="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50/50 transition-colors group">
+                <a href="./13-other-user-profile.html" class="shrink-0 relative">
+                    <img src="https://ui-avatars.com/api/?name=Elara+Vane&amp;background=fff1f2&amp;color=be123c&amp;size=100" alt="Elara Vane" class="h-12 w-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-200 transition-all">
+                </a>
+
+                <div class="flex-1 min-w-0 flex flex-col justify-center">
+                    <a href="./13-other-user-profile.html" class="text-[16px] font-medium text-slate-900 truncate hover:text-[#0D9488] transition-colors">Elara Vane</a>
+                    <span class="text-[14px] text-gray-500 truncate">@elara_v</span>
+                </div>
+
+                <button class="shrink-0 h-[36px] px-4 rounded-lg bg-[#14B8A6] hover:bg-[#0D9488] text-white text-sm font-medium transition-all shadow-sm flex items-center gap-1.5 focus:ring-2 focus:ring-offset-1 focus:ring-[#14B8A6]">
+                    Following
+                </button>
+            </div>
+
+            <!-- User 4: Follow (Outline) -->
+            <div class="flex items-center gap-4 p-4 border-b border-gray-100 hover:bg-gray-50/50 transition-colors group">
+                <a href="./13-other-user-profile.html" class="shrink-0 relative">
+                    <img src="https://ui-avatars.com/api/?name=David+Kim&amp;background=eff6ff&amp;color=1d4ed8&amp;size=100" alt="David Kim" class="h-12 w-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-200 transition-all">
+                </a>
+
+                <div class="flex-1 min-w-0 flex flex-col justify-center">
+                    <a href="./13-other-user-profile.html" class="text-[16px] font-medium text-slate-900 truncate hover:text-[#0D9488] transition-colors">David Kim</a>
+                    <span class="text-[14px] text-gray-500 truncate">@dkim_dev</span>
+                </div>
+
+                <button class="shrink-0 h-[36px] px-4 rounded-lg bg-transparent border border-[#14B8A6] text-[#14B8A6] hover:bg-[#14B8A6]/5 text-sm font-medium transition-all flex items-center gap-1.5 focus:ring-2 focus:ring-offset-1 focus:ring-[#14B8A6]">
+                    Follow
+                </button>
+            </div>
+
+            <!-- User 5: Following (Active) -->
+            <div class="flex items-center gap-4 p-4 hover:bg-gray-50/50 transition-colors group">
+                <a href="./13-other-user-profile.html" class="shrink-0 relative">
+                    <img src="https://ui-avatars.com/api/?name=Sofie+Møller&amp;background=fdf4ff&amp;color=a21caf&amp;size=100" alt="Sofie Møller" class="h-12 w-12 rounded-full object-cover ring-2 ring-transparent group-hover:ring-gray-200 transition-all">
+                </a>
+
+                <div class="flex-1 min-w-0 flex flex-col justify-center">
+                    <a href="./13-other-user-profile.html" class="text-[16px] font-medium text-slate-900 truncate hover:text-[#0D9488] transition-colors">Sofie Møller</a>
+                    <span class="text-[14px] text-gray-500 truncate">@sofiem</span>
+                </div>
+
+                <button class="shrink-0 h-[36px] px-4 rounded-lg bg-[#14B8A6] hover:bg-[#0D9488] text-white text-sm font-medium transition-all shadow-sm flex items-center gap-1.5 focus:ring-2 focus:ring-offset-1 focus:ring-[#14B8A6]">
+                    Following
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Footer / End of list indicator -->
+        <div class="mt-6 flex justify-center">
+            <div class="h-1 w-1 rounded-full bg-gray-200 mx-1"></div>
+            <div class="h-1 w-1 rounded-full bg-gray-200 mx-1"></div>
+            <div class="h-1 w-1 rounded-full bg-gray-200 mx-1"></div>
+        </div>
+
+    </main>
+
+
+</body></html>
