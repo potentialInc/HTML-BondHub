@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+}
+/* Smooth, modern fade-in animation */
+@keyframes subtle-entrance {
+0% {
+opacity: 0;
+transform: translateY(12px) scale(0.98);
+filter: blur(4px);
+}
+100% {
+opacity: 1;
+transform: translateY(0) scale(1);
+filter: blur(0);
+}
+}
+.animate-enter {
+animation: subtle-entrance 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+opacity: 0; /* Start invisible */
+}
+.delay-200 {
+animation-delay: 200ms;
+}
+</style></head>
+<body class="h-screen w-screen bg-gradient-to-br from-[#14B8A6] to-[#0D9488] flex flex-col items-center justify-center overflow-hidden text-white antialiased selection:bg-white/30 selection:text-white">
+
+    <!-- Main Container -->
+    <main class="flex flex-col items-center justify-center space-y-8 relative z-10">
+        
+        <!-- Logo Wordmark -->
+        <!-- Using semibold for a cleaner look than bold, tracking-tighter for modern feel -->
+        <h1 class="text-5xl md:text-6xl font-semibold tracking-tighter text-white animate-enter cursor-default">
+            BondHub
+        </h1>
+
+        <!-- Loading Spinner -->
+        <!-- Subtle contrast with opacity, delayed animation -->
+        <div class="animate-enter delay-200 flex items-center justify-center">
+            <span class="iconify animate-spin text-white/80" data-icon="lucide:loader-2" data-width="24" data-height="24" style="stroke-width: 1.5;">
+            </span>
+        </div>
+
+    </main>
+
+    <!-- Optional: Subtle noise texture overlay for depth (simulated via opacity) -->
+    <div class="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');">
+    </div>
+
+
+</body></html>

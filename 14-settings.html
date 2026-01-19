@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings - BondHub</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+</style></head>
+<body class="bg-gray-50 text-slate-900 min-h-screen">
+
+    <!-- Main Container -->
+    <main class="max-w-[560px] mx-auto px-6 py-6 min-h-screen flex flex-col">
+        
+        <!-- Header: Back Button & Title -->
+        <header class="mb-8">
+            <a href="./05-home-feed.html" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-[#14B8A6] transition-colors group mb-6">
+                <span class="iconify group-hover:-translate-x-0.5 transition-transform" data-icon="lucide:arrow-left" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                Back
+            </a>
+            <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Settings</h1>
+        </header>
+
+        <div class="space-y-6">
+
+            <!-- Section 1: Account -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-5 py-3 border-b border-gray-100">
+                    <h2 class="text-sm font-medium text-gray-500">Account</h2>
+                </div>
+                
+                <!-- Item: Change Password -->
+                <button class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-100 hover:bg-gray-50 transition-colors group text-left">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-gray-400 group-hover:text-slate-600 transition-colors">
+                            <span class="iconify" data-icon="lucide:lock" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">Change Password</span>
+                    </div>
+                    <span class="iconify text-gray-400" data-icon="lucide:chevron-right" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                </button>
+
+                <!-- Item: Email Settings -->
+                <button class="w-full flex items-center justify-between px-5 py-4 hover:bg-gray-50 transition-colors group text-left">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-gray-400 group-hover:text-slate-600 transition-colors">
+                            <span class="iconify" data-icon="lucide:mail" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">Email Settings</span>
+                    </div>
+                    <span class="iconify text-gray-400" data-icon="lucide:chevron-right" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                </button>
+            </section>
+
+            <!-- Section 2: Notifications -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-5 py-3 border-b border-gray-100">
+                    <h2 class="text-sm font-medium text-gray-500">Notifications</h2>
+                </div>
+                
+                <!-- Item: Placeholder -->
+                <div class="w-full flex items-center justify-between px-5 py-4 bg-white/50">
+                    <div class="flex items-center gap-3.5 opacity-50">
+                        <span class="text-gray-400">
+                            <span class="iconify" data-icon="lucide:bell" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">Push Notifications</span>
+                    </div>
+                    <span class="text-xs font-medium text-[#14B8A6] bg-[#14B8A6]/10 px-2 py-1 rounded-md">Coming soon</span>
+                </div>
+            </section>
+
+            <!-- Section 3: App -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-5 py-3 border-b border-gray-100">
+                    <h2 class="text-sm font-medium text-gray-500">App</h2>
+                </div>
+
+                <!-- Item: Logout -->
+                <button class="w-full flex items-center justify-between px-5 py-4 hover:bg-rose-50/50 transition-colors group text-left">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-rose-500/70 group-hover:text-rose-600 transition-colors">
+                            <span class="iconify" data-icon="lucide:log-out" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-rose-600">Log out</span>
+                    </div>
+                </button>
+            </section>
+
+            <!-- Section 4: About -->
+            <section class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                <div class="bg-gray-50 px-5 py-3 border-b border-gray-100">
+                    <h2 class="text-sm font-medium text-gray-500">About</h2>
+                </div>
+
+                <!-- Item: Terms -->
+                <a href="#" class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-100 hover:bg-gray-50 transition-colors group text-left">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-gray-400 group-hover:text-slate-600 transition-colors">
+                            <span class="iconify" data-icon="lucide:file-text" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">Terms of Service</span>
+                    </div>
+                    <span class="iconify text-gray-400" data-icon="lucide:external-link" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                </a>
+
+                <!-- Item: Privacy -->
+                <a href="#" class="w-full flex items-center justify-between px-5 py-4 border-b border-gray-100 hover:bg-gray-50 transition-colors group text-left">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-gray-400 group-hover:text-slate-600 transition-colors">
+                            <span class="iconify" data-icon="lucide:shield" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">Privacy Policy</span>
+                    </div>
+                    <span class="iconify text-gray-400" data-icon="lucide:external-link" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                </a>
+
+                <!-- Item: Version -->
+                <div class="w-full flex items-center justify-between px-5 py-4">
+                    <div class="flex items-center gap-3.5">
+                        <span class="text-gray-400">
+                            <span class="iconify" data-icon="lucide:info" data-width="20" data-height="20" data-stroke-width="1.5"></span>
+                        </span>
+                        <span class="text-base font-medium text-slate-900">App Version</span>
+                    </div>
+                    <span class="text-sm font-medium text-gray-400">v1.0.0</span>
+                </div>
+            </section>
+
+        </div>
+        
+        <!-- Bottom Spacer -->
+        <div class="h-12"></div>
+
+    </main>
+
+</body></html>

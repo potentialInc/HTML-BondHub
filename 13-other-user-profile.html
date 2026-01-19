@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub - Sarah Chen</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+</style></head>
+<body class="bg-gray-50 text-slate-900 min-h-screen">
+
+    <!-- Main Container -->
+    <main class="max-w-[680px] mx-auto px-6 py-6 min-h-screen flex flex-col">
+        
+        <!-- Header: Back Button -->
+        <header class="mb-6">
+            <a href="#" class="inline-flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-slate-900 transition-colors group">
+                <span class="iconify group-hover:-translate-x-0.5 transition-transform" data-icon="lucide:arrow-left" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                Back
+            </a>
+        </header>
+
+        <!-- Profile Header Card -->
+        <section class="bg-white rounded-[12px] shadow-sm border border-gray-100 p-6 mb-8 relative overflow-hidden">
+            <div class="flex flex-col sm:flex-row gap-6 items-start">
+                
+                <!-- Avatar -->
+                <div class="shrink-0 relative">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;q=80&amp;w=200&amp;h=200" alt="Sarah Chen" class="h-[80px] w-[80px] rounded-full object-cover ring-4 ring-gray-50 border border-gray-100">
+                    <div class="absolute bottom-1 right-1 h-3.5 w-3.5 bg-[#14B8A6] border-2 border-white rounded-full"></div>
+                </div>
+
+                <!-- Info -->
+                <div class="flex-1 w-full min-w-0">
+                    <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                        <div>
+                            <h1 class="text-[28px] font-semibold tracking-tight text-slate-900 leading-tight">Sarah Chen</h1>
+                            <p class="text-[14px] text-gray-500 font-medium">@sarahchen</p>
+                        </div>
+                        
+                        <!-- Follow Button (Desktop position) -->
+                        <button class="hidden md:flex h-[40px] px-5 items-center justify-center rounded-lg bg-[#14B8A6] hover:bg-[#0D9488] text-white text-sm font-semibold transition-all shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-[#14B8A6]">
+                            <span class="iconify mr-1.5" data-icon="lucide:plus" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                            Follow
+                        </button>
+                    </div>
+
+                    <!-- Bio -->
+                    <p class="mt-3 text-[16px] text-gray-600 leading-relaxed max-w-md">
+                        Product Designer &amp; Developer building digital experiences. Passionate about UI/UX and community building.
+                    </p>
+
+                    <!-- Stats -->
+                    <div class="mt-5 flex items-center gap-6">
+                        <a href="#" class="group flex items-baseline gap-1.5 hover:opacity-80 transition-opacity">
+                            <span class="text-[16px] font-semibold text-slate-900 group-hover:text-[#14B8A6]">128</span>
+                            <span class="text-[14px] text-gray-500">Following</span>
+                        </a>
+                        <a href="#" class="group flex items-baseline gap-1.5 hover:opacity-80 transition-opacity">
+                            <span class="text-[16px] font-semibold text-slate-900 group-hover:text-[#14B8A6]">256</span>
+                            <span class="text-[14px] text-gray-500">Followers</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Follow Button (Mobile position) -->
+            <button class="md:hidden mt-6 w-full h-[48px] flex items-center justify-center rounded-lg bg-[#14B8A6] hover:bg-[#0D9488] text-white text-[15px] font-semibold transition-all shadow-sm focus:ring-2 focus:ring-offset-2 focus:ring-[#14B8A6]">
+                <span class="iconify mr-2" data-icon="lucide:plus" data-width="18" data-height="18" data-stroke-width="1.5"></span>
+                Follow
+            </button>
+        </section>
+
+        <!-- User's Posts Section -->
+        <section>
+            <div class="flex items-center gap-3 mb-5">
+                <h2 class="text-[20px] font-semibold tracking-tight text-slate-900">Sarah's Posts</h2>
+                <span class="inline-flex items-center justify-center h-6 px-2 rounded-md bg-gray-100 text-xs font-medium text-gray-600">12</span>
+            </div>
+
+            <div class="space-y-6">
+                
+                <!-- Post Card 1 -->
+                <article class="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md hover:border-gray-200 transition-all duration-200 group cursor-pointer">
+                    <!-- Image Area -->
+                    <div class="relative h-[240px] w-full bg-gray-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&amp;fit=crop&amp;q=80&amp;w=1200&amp;h=600" alt="Design System" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-sm shadow-sm border border-white/20 text-xs font-medium text-[#0D9488]">
+                                <span class="iconify mr-1.5" data-icon="lucide:palette" data-width="12" data-height="12"></span>
+                                Design Systems
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-5">
+                        <h3 class="text-[18px] font-semibold text-slate-900 mb-2 leading-snug group-hover:text-[#14B8A6] transition-colors">The Future of Minimalist Interface Design</h3>
+                        <p class="text-[15px] text-gray-500 leading-relaxed mb-4 line-clamp-2">
+                            Exploring how reduction in visual noise can improve user focus and retention rates in modern web applications.
+                        </p>
+                        
+                        <!-- Footer -->
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                            <span class="text-xs text-gray-400 font-medium">Oct 24, 2023</span>
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-1.5 text-gray-400 hover:text-rose-500 transition-colors">
+                                    <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                                    <span class="text-xs font-medium">42</span>
+                                </button>
+                                <button class="flex items-center gap-1.5 text-gray-400 hover:text-blue-500 transition-colors">
+                                    <span class="iconify" data-icon="lucide:message-circle" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                                    <span class="text-xs font-medium">8</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Post Card 2 -->
+                <article class="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-md hover:border-gray-200 transition-all duration-200 group cursor-pointer">
+                    <!-- Image Area -->
+                    <div class="relative h-[240px] w-full bg-gray-100 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&amp;fit=crop&amp;q=80&amp;w=1200&amp;h=600" alt="Community" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute top-4 left-4">
+                            <span class="inline-flex items-center px-2.5 py-1 rounded-md bg-white/90 backdrop-blur-sm shadow-sm border border-white/20 text-xs font-medium text-indigo-600">
+                                <span class="iconify mr-1.5" data-icon="lucide:users" data-width="12" data-height="12"></span>
+                                Community
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <!-- Content -->
+                    <div class="p-5">
+                        <h3 class="text-[18px] font-semibold text-slate-900 mb-2 leading-snug group-hover:text-[#14B8A6] transition-colors">Building Sustainable Online Communities</h3>
+                        <p class="text-[15px] text-gray-500 leading-relaxed mb-4 line-clamp-2">
+                            A deep dive into the psychology of community engagement and how to foster meaningful connections in a digital-first world.
+                        </p>
+                        
+                        <!-- Footer -->
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-50">
+                            <span class="text-xs text-gray-400 font-medium">Sep 12, 2023</span>
+                            <div class="flex items-center gap-4">
+                                <button class="flex items-center gap-1.5 text-gray-400 hover:text-rose-500 transition-colors">
+                                    <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                                    <span class="text-xs font-medium">156</span>
+                                </button>
+                                <button class="flex items-center gap-1.5 text-gray-400 hover:text-blue-500 transition-colors">
+                                    <span class="iconify" data-icon="lucide:message-circle" data-width="16" data-height="16" data-stroke-width="1.5"></span>
+                                    <span class="text-xs font-medium">23</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Spacer for scroll -->
+        <div class="h-12"></div>
+
+    </main>
+
+</body></html>

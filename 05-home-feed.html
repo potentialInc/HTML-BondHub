@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BondHub - Home Feed</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+body {
+font-family: 'Inter', sans-serif;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+/* Hide scrollbar for sidebar but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+display: none;
+}
+.no-scrollbar {
+-ms-overflow-style: none;
+scrollbar-width: none;
+}
+</style></head>
+<body class="bg-gray-50 text-slate-900 selection:bg-[#14B8A6]/20 selection:text-[#0f766e]">
+
+    <div class="flex min-h-screen w-full">
+        
+        <!-- Desktop Sidebar (Fixed) -->
+        <aside class="hidden lg:flex flex-col w-[240px] fixed h-screen border-r border-gray-100 bg-white z-40">
+            <!-- Logo -->
+            <div class="h-16 flex items-center px-6">
+                <a href="./05-home-feed.html" class="flex items-center gap-2">
+                    <div class="h-8 w-8 rounded-lg bg-[#14B8A6] flex items-center justify-center text-white">
+                        <span class="iconify" data-icon="lucide:hexagon" data-width="20" data-height="20" style="stroke-width: 2.5;"></span>
+                    </div>
+                    <span class="text-lg font-semibold tracking-tight text-slate-900">BondHub</span>
+                </a>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 px-4 py-6 space-y-1">
+                <a href="./05-home-feed.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg bg-[#14B8A6]/10 text-[#0D9488] transition-colors">
+                    <span class="iconify" data-icon="lucide:home" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Home
+                </a>
+                <a href="./07-community-list.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:users" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Communities
+                </a>
+                <a href="./10-my-profile.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:user" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Profile
+                </a>
+                <a href="./14-settings.html" class="flex items-center gap-3 px-3 py-2.5 text-sm font-medium rounded-lg text-gray-500 hover:bg-gray-50 hover:text-slate-900 transition-colors">
+                    <span class="iconify" data-icon="lucide:settings" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                    Settings
+                </a>
+            </nav>
+
+            <!-- User Mini Profile -->
+            <div class="p-4 border-t border-gray-100">
+                <a href="./10-my-profile.html" class="flex items-center gap-3 group">
+                    <img src="https://ui-avatars.com/api/?name=Alex+R&amp;background=f1f5f9&amp;color=64748b" alt="User" class="h-9 w-9 rounded-full ring-2 ring-white">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium text-slate-900 truncate group-hover:text-[#14B8A6] transition-colors">Alex Rivers</p>
+                        <p class="text-xs text-gray-500 truncate">@arivers</p>
+                    </div>
+                    <span class="iconify text-gray-400 group-hover:text-gray-600" data-icon="lucide:more-horizontal" data-width="16" data-height="16"></span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Feed Area -->
+        <main class="flex-1 lg:ml-[240px] w-full flex justify-center">
+            <div class="w-full max-w-[680px] px-4 py-6 lg:py-10 pb-24 lg:pb-10">
+                
+                <!-- Page Header -->
+                <header class="mb-8 flex items-center justify-between">
+                    <h1 class="text-3xl font-semibold tracking-tight text-slate-900">Home</h1>
+                    <button class="lg:hidden p-2 text-gray-500 hover:text-slate-900">
+                        <span class="iconify" data-icon="lucide:bell" data-width="24" data-height="24" style="stroke-width: 1.5;"></span>
+                    </button>
+                    <!-- Desktop Action -->
+                    <button class="hidden lg:flex items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 transition-colors shadow-sm">
+                        <span class="iconify" data-icon="lucide:plus" data-width="16" data-height="16" style="stroke-width: 2;"></span>
+                        New Post
+                    </button>
+                </header>
+
+                <!-- Feed List -->
+                <div class="flex flex-col gap-4">
+
+                    <!-- Post Card 1 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60 cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Sarah" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100">
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-medium text-slate-900">Sarah Chen</span>
+                                        <span class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488]">Design Systems</span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">2 hours ago</span>
+                                </div>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">The evolution of component libraries in 2024</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                I've been researching how major tech companies are shifting their approach to internal design systems. The move towards headless components styled with utility classes seems to be the dominant trend. What is your team using?
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                24 comments
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                86 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 2 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60 cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Marcus" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100">
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-medium text-slate-900">Marcus Johnson</span>
+                                        <span class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488]">SF Startups</span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">5 hours ago</span>
+                                </div>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">Weekly Founder Coffee @ Blue Bottle</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                Hey everyone! We're hosting our weekly casual meetup for early-stage founders this Thursday at 9 AM. Come grab a coffee, share what you're building, and get feedback on your latest MVP iterations. No pitch decks allowed, just vibes.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                12 comments
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                43 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- Post Card 3 -->
+                    <article class="group bg-white p-5 rounded-xl border border-gray-100 transition-all hover:shadow-md hover:border-gray-200/60 cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-3">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=64&amp;h=64&amp;q=80" alt="Elena" class="h-10 w-10 rounded-full object-cover ring-1 ring-gray-100">
+                                <div class="flex flex-col">
+                                    <div class="flex items-center gap-2">
+                                        <span class="text-sm font-medium text-slate-900">Elena Rodriguez</span>
+                                        <span class="inline-flex items-center rounded-full bg-teal-50 px-2 py-0.5 text-xs font-medium text-[#0D9488]">Product Mgmt</span>
+                                    </div>
+                                    <span class="text-xs text-gray-500">Yesterday</span>
+                                </div>
+                            </div>
+                            <button class="text-gray-400 hover:text-gray-600">
+                                <span class="iconify" data-icon="lucide:more-horizontal" data-width="20" data-height="20" style="stroke-width: 1.5;"></span>
+                            </button>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h2 class="text-lg font-semibold tracking-tight text-slate-900 mb-1.5 group-hover:text-[#14B8A6] transition-colors">Roadmap prioritization frameworks?</h2>
+                            <p class="text-sm text-gray-600 leading-relaxed line-clamp-2">
+                                Struggling to balance technical debt with new feature requests this quarter. We've tried RICE scores but they feel too subjective for our current stage. Has anyone successfully implemented the Kano model for B2B SaaS?
+                            </p>
+                        </div>
+
+                        <div class="flex items-center gap-6 pt-2 border-t border-gray-50">
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:message-square" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                38 comments
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors">
+                                <span class="iconify" data-icon="lucide:heart" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                15 likes
+                            </button>
+                            <button class="flex items-center gap-1.5 text-xs font-medium text-gray-500 hover:text-[#14B8A6] transition-colors ml-auto">
+                                <span class="iconify" data-icon="lucide:share-2" data-width="16" data-height="16" style="stroke-width: 1.5;"></span>
+                                Share
+                            </button>
+                        </div>
+                    </article>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="lg:hidden fixed bottom-0 left-0 w-full h-[60px] bg-white border-t border-gray-100 flex justify-around items-center z-50 px-2">
+        <a href="./05-home-feed.html" class="flex flex-col items-center justify-center w-full h-full text-[#14B8A6]">
+            <span class="iconify mb-0.5" data-icon="lucide:home" data-width="22" data-height="22" style="stroke-width: 2;"></span>
+            <span class="text-[10px] font-medium">Home</span>
+        </a>
+        <a href="./07-community-list.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:users" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Communities</span>
+        </a>
+        <a href="./10-my-profile.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:user" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Profile</span>
+        </a>
+        <a href="./14-settings.html" class="flex flex-col items-center justify-center w-full h-full text-gray-400 hover:text-gray-600">
+            <span class="iconify mb-0.5" data-icon="lucide:settings" data-width="22" data-height="22" style="stroke-width: 1.5;"></span>
+            <span class="text-[10px] font-medium">Settings</span>
+        </a>
+    </nav>
+
+
+</body></html>
