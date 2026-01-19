@@ -277,5 +277,71 @@ transform: scale(1);
         </div>
     </main>
 
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[200] flex flex-col gap-2"></div>
+
+    <script>
+        function showToast(message, type = 'success', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-[#14B8A6]' : type === 'error' ? 'bg-red-500' : 'bg-slate-800';
+            const icon = type === 'success' ? 'lucide:check' : type === 'error' ? 'lucide:x' : 'lucide:info';
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform translate-x-full transition-transform duration-300 min-w-[280px]`;
+            toast.innerHTML = `<span class="iconify" data-icon="${icon}" data-width="18" data-height="18"></span><span class="text-sm font-medium">${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.classList.remove('translate-x-full'); toast.classList.add('translate-x-0'); }, 10);
+            setTimeout(() => { toast.classList.remove('translate-x-0'); toast.classList.add('translate-x-full'); setTimeout(() => toast.remove(), 300); }, duration);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide the static success message initially
+            const successMsg = document.querySelector('.bg-emerald-50');
+            if (successMsg) successMsg.style.display = 'none';
+
+            // Export button handler
+            const exportBtn = document.querySelector('form button[type="button"], form button:last-child');
+            if (exportBtn) {
+                exportBtn.onclick = function(e) {
+                    e.preventDefault();
+                    const dataType = document.querySelector('input[name="dataType"]:checked')?.value || 'users';
+                    const format = document.querySelector('input[name="format"]:checked')?.value || 'csv';
+
+                    // Show loading state
+                    exportBtn.innerHTML = '<span class="iconify animate-spin" data-icon="lucide:loader-2" data-width="18" data-height="18"></span> Exporting...';
+                    exportBtn.disabled = true;
+
+                    // Simulate export
+                    setTimeout(() => {
+                        exportBtn.innerHTML = '<span class="iconify" data-icon="lucide:download" data-width="18" data-height="18"></span> Export Data';
+                        exportBtn.disabled = false;
+                        if (successMsg) successMsg.style.display = 'flex';
+                        showToast(`${dataType.charAt(0).toUpperCase() + dataType.slice(1)} exported as ${format.toUpperCase()}`, 'success');
+                    }, 2000);
+                };
+            }
+
+            // Data type selection feedback
+            document.querySelectorAll('input[name="dataType"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const label = this.value.charAt(0).toUpperCase() + this.value.slice(1);
+                    showToast(`Selected: ${label}`, 'info', 1500);
+                });
+            });
+
+            // Date range toggle
+            document.querySelectorAll('input[name="dateRange"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const dateInputs = document.querySelectorAll('input[type="text"][placeholder*="Date"]');
+                    if (this.value === 'all') {
+                        dateInputs.forEach(input => { input.disabled = true; input.value = ''; });
+                        showToast('Exporting all time data', 'info', 1500);
+                    } else {
+                        dateInputs.forEach(input => input.disabled = false);
+                        showToast('Select custom date range', 'info', 1500);
+                    }
+                });
+            });
+        });
+    </script>
 
 </body></html>

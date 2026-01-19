@@ -316,4 +316,70 @@ teal: {
     </main>
 
 
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[200] flex flex-col gap-2"></div>
+
+    <!-- Period Dropdown Menu -->
+    <script>
+        // Toast Notification System
+        function showToast(message, type = 'success', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-[#14B8A6]' : type === 'error' ? 'bg-red-500' : 'bg-slate-800';
+            const icon = type === 'success' ? 'lucide:check' : type === 'error' ? 'lucide:x' : 'lucide:info';
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform translate-x-full transition-transform duration-300 min-w-[280px]`;
+            toast.innerHTML = `<span class="iconify" data-icon="${icon}" data-width="18" data-height="18"></span><span class="text-sm font-medium">${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.classList.remove('translate-x-full'); toast.classList.add('translate-x-0'); }, 10);
+            setTimeout(() => { toast.classList.remove('translate-x-0'); toast.classList.add('translate-x-full'); setTimeout(() => toast.remove(), 300); }, duration);
+        }
+
+        // Period Dropdown
+        document.addEventListener('DOMContentLoaded', function() {
+            const periodBtn = document.querySelector('header .relative button');
+            if (periodBtn) {
+                const dropdown = document.createElement('div');
+                dropdown.className = 'dropdown-menu hidden absolute right-0 top-full mt-1 w-[180px] bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-50';
+                dropdown.innerHTML = `
+                    <button onclick="setPeriod('Today'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left">Today</button>
+                    <button onclick="setPeriod('Last 7 days'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left">Last 7 days</button>
+                    <button onclick="setPeriod('Last 30 days'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left">Last 30 days</button>
+                    <button onclick="setPeriod('Last 90 days'); closeAllDropdowns();" class="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors text-left">Last 90 days</button>
+                `;
+                periodBtn.parentElement.appendChild(dropdown);
+                periodBtn.onclick = function(e) {
+                    e.stopPropagation();
+                    const isHidden = dropdown.classList.contains('hidden');
+                    closeAllDropdowns();
+                    if (isHidden) dropdown.classList.remove('hidden');
+                };
+            }
+        });
+
+        function setPeriod(period) {
+            const periodBtn = document.querySelector('header .relative button span:nth-child(2)');
+            if (periodBtn) periodBtn.textContent = period;
+            showToast(`Period set to ${period}`, 'success');
+        }
+
+        function closeAllDropdowns() {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => menu.classList.add('hidden'));
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.dropdown-menu') && !e.target.closest('.relative button')) {
+                closeAllDropdowns();
+            }
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeAllDropdowns();
+        });
+
+        // View All activity
+        document.querySelector('.bg-white.border button')?.addEventListener('click', function() {
+            showToast('Loading all activity...', 'info');
+        });
+    </script>
+
 </body></html>

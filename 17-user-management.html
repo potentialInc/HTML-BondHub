@@ -423,5 +423,153 @@ transform: scale(1);
         </div>
     </main>
 
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed top-4 right-4 z-[200] flex flex-col gap-2"></div>
+
+    <!-- Edit User Modal -->
+    <div id="editUserModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeEditUserModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[480px] bg-white rounded-xl shadow-2xl border border-gray-200/60">
+                <div class="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                    <h2 class="text-lg font-semibold text-gray-900">Edit User</h2>
+                    <button onclick="closeEditUserModal()" class="text-gray-400 hover:text-gray-600 p-1 rounded-md hover:bg-gray-100 transition-colors">
+                        <span class="iconify" data-icon="lucide:x" data-width="20" data-height="20"></span>
+                    </button>
+                </div>
+                <div class="p-6">
+                    <div class="flex items-center gap-4 mb-6">
+                        <img id="editUserAvatar" src="https://ui-avatars.com/api/?name=User&background=14B8A6&color=fff" class="w-16 h-16 rounded-full" alt="User">
+                        <div>
+                            <p id="editUserName" class="text-lg font-semibold text-gray-900">User Name</p>
+                            <p id="editUserEmail" class="text-sm text-gray-500">email@example.com</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Role</label>
+                            <select id="editUserRole" class="w-full h-[44px] px-4 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20 focus:border-[#14B8A6]">
+                                <option value="user">User</option>
+                                <option value="moderator">Moderator</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-1.5">Status</label>
+                            <select id="editUserStatus" class="w-full h-[44px] px-4 rounded-lg border border-gray-200 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-[#14B8A6]/20 focus:border-[#14B8A6]">
+                                <option value="active">Active</option>
+                                <option value="suspended">Suspended</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex items-center justify-end gap-3 px-6 py-4 border-t border-gray-100 bg-gray-50/50 rounded-b-xl">
+                    <button onclick="closeEditUserModal()" class="h-[40px] px-5 bg-white border border-gray-200 text-gray-600 hover:bg-gray-50 rounded-lg font-medium text-sm transition-all">Cancel</button>
+                    <button onclick="saveUserChanges()" class="h-[40px] px-5 bg-[#14B8A6] hover:bg-[#0D9488] text-white rounded-lg font-medium text-sm transition-all">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suspend User Modal -->
+    <div id="suspendUserModal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-slate-900/30 backdrop-blur-sm" onclick="closeSuspendUserModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="relative w-full max-w-[400px] bg-white rounded-xl shadow-2xl border border-gray-200/60">
+                <div class="p-6 text-center">
+                    <div class="mx-auto w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                        <span class="iconify text-red-600" data-icon="lucide:ban" data-width="24" data-height="24"></span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Suspend User</h3>
+                    <p id="suspendUserText" class="text-sm text-gray-600 mb-6">Are you sure you want to suspend this user?</p>
+                    <div class="flex gap-3">
+                        <button onclick="closeSuspendUserModal()" class="flex-1 h-[44px] px-4 bg-white border border-gray-200 text-gray-700 hover:bg-gray-50 rounded-lg font-medium text-sm transition-all">Cancel</button>
+                        <button onclick="confirmSuspendUser()" class="flex-1 h-[44px] px-4 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm transition-all">Suspend</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentEditUser = null;
+        let currentSuspendUser = null;
+
+        function showToast(message, type = 'success', duration = 3000) {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgColor = type === 'success' ? 'bg-[#14B8A6]' : type === 'error' ? 'bg-red-500' : 'bg-slate-800';
+            const icon = type === 'success' ? 'lucide:check' : type === 'error' ? 'lucide:x' : 'lucide:info';
+            toast.className = `${bgColor} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 transform translate-x-full transition-transform duration-300 min-w-[280px]`;
+            toast.innerHTML = `<span class="iconify" data-icon="${icon}" data-width="18" data-height="18"></span><span class="text-sm font-medium">${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => { toast.classList.remove('translate-x-full'); toast.classList.add('translate-x-0'); }, 10);
+            setTimeout(() => { toast.classList.remove('translate-x-0'); toast.classList.add('translate-x-full'); setTimeout(() => toast.remove(), 300); }, duration);
+        }
+
+        function openEditUserModal(name, email, role, status) {
+            currentEditUser = { name, email, role, status };
+            document.getElementById('editUserAvatar').src = `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=14B8A6&color=fff`;
+            document.getElementById('editUserName').textContent = name;
+            document.getElementById('editUserEmail').textContent = email;
+            document.getElementById('editUserRole').value = role;
+            document.getElementById('editUserStatus').value = status;
+            document.getElementById('editUserModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeEditUserModal() {
+            document.getElementById('editUserModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function saveUserChanges() {
+            closeEditUserModal();
+            showToast(`User ${currentEditUser.name} updated successfully`, 'success');
+        }
+
+        function openSuspendUserModal(name) {
+            currentSuspendUser = name;
+            document.getElementById('suspendUserText').textContent = `Are you sure you want to suspend ${name}?`;
+            document.getElementById('suspendUserModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSuspendUserModal() {
+            document.getElementById('suspendUserModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function confirmSuspendUser() {
+            closeSuspendUserModal();
+            showToast(`${currentSuspendUser} has been suspended`, 'success');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const cells = row.querySelectorAll('td');
+                if (cells.length >= 6) {
+                    const nameEl = cells[1].querySelector('.text-sm.font-medium');
+                    const emailEl = cells[1].querySelector('.text-xs');
+                    const roleEl = cells[2].querySelector('span');
+                    const statusEl = cells[3].querySelector('span');
+                    if (nameEl && emailEl) {
+                        const name = nameEl.textContent;
+                        const email = emailEl.textContent;
+                        const role = roleEl ? roleEl.textContent.toLowerCase().trim() : 'user';
+                        const status = statusEl && statusEl.textContent.includes('Suspended') ? 'suspended' : 'active';
+                        const editBtn = cells[5].querySelector('button:first-child');
+                        const banBtn = cells[5].querySelector('button:last-child');
+                        if (editBtn) editBtn.onclick = () => openEditUserModal(name, email, role, status);
+                        if (banBtn) banBtn.onclick = () => openSuspendUserModal(name);
+                    }
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') { closeEditUserModal(); closeSuspendUserModal(); }
+        });
+    </script>
 
 </body></html>
